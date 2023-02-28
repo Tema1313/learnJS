@@ -1,41 +1,29 @@
-function createCalendar(elem, year, month) {
-    const array = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"]
-    let table = document.createElement("table")
-    let date = new Date(year, month, 0)
-    let dayOfWeek = new Date(year,month-1).getDay() === 0 ? 6 : new Date(year,month-1).getDay()-1
-    let numberRows = date.getDate() > 28 ? 6 : 5 
-    let valueday=0
-    for (let i = 0; i < numberRows; i++) {
-        let tr = document.createElement("tr")
-        if (i === 0) {
-                for(let j = 0; j < 7; j++){
-                    let th = document.createElement("th")
-                    th.textContent = array[j]
-                    tr.append(th)
-                }
-        }else if(i === 1){
-            for(let j = 0; j < 7; j++){
-                let td = document.createElement("td")
-                if(j>=dayOfWeek){
-                    valueday++
-                    td.textContent = valueday
-                }
-                tr.append(td)
-            }
-        }else{
-            for(let j = 0; j < 7; j++){
-                let td = document.createElement("td")
-                if(valueday<date.getDate()){
-                    valueday++
-                    td.textContent = valueday
-                }
-                tr.append(td)
-            }
-        }
-        table.append(tr)
-    }
+let clock = 0;
 
-    elem.append(table)
+function render() {    
+    let date = new Date();
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+    document.querySelector("div").querySelector(".hours").textContent = hours
+    document.querySelector("div").querySelector(".minute").textContent = mins
+    document.querySelector("div").querySelector(".second").textContent = secs
 }
 
-createCalendar(calendar, 2012, 10);
+const clockStart = () => {
+    if(clock !== 0){
+        return
+    }
+    render();
+    clock = setInterval(render, 1000)
+}
+
+const clockStop = () => {
+    clearInterval(clock)
+    clock = 0
+}

@@ -4,29 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet">
     <title>Document</title>
-    <head>
-        <style>
-          table {
-            border-collapse: collapse;
-          }
-      
-          td,
-          th {
-            border: 1px solid black;
-            padding: 3px;
-            text-align: center;
-          }
-      
-          th {
-            font-weight: bold;
-            background-color: #E6E6E6;
-          }
-        </style>
-      </head>
 </head>
 <body>
-    <div id="calendar"></div>
-    <script src="./script.js"></script>
+    <div><span class="hours">hh</span>:<span class="minute">mm</span>:<span class="second">ss</span></div>
+  <!-- клик по этой кнопке вызовет clockStart() -->
+  <input type="button" onclick="clockStart()" value="Старт">
+
+  <!-- клик по этой кнопке вызовет clockStop() -->
+  <input type="button" onclick="clockStop()" value="Стоп">
+  <script src="./script.js"></script>
 </body>
 </html>
